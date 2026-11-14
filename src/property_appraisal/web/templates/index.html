@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Appraisal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main>
+        <h1>Property Appraisal</h1>
+        <p class="subtitle">Find listings priced below their predicted market value.</p>
+
+        <form method="post" class="search">
+            <label for="zip_code">Zip code</label>
+            <select id="zip_code" name="zip_code" required>
+                {% for code in zip_codes %}
+                <option value="{{ code }}" {{ 'selected' if code == zip_code }}>{{ code }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Appraise</button>
+        </form>
+
+        {% if error %}
+        <p class="message message--error">{{ error }}</p>
+        {% elif results is defined %}
+            {% if results %}
+            <p class="message">{{ results|length }} undervalued listing{{ 's' if results|length != 1 }} in {{ zip_code }}.</p>
+            <table class="results">
+                <thead>
+                    <tr>
+                        <th>Listing</th>
+                        <th>Beds / Baths</th>
+                        <th>Sqft</th>
+                        <th>Built</th>
+                        <th>Asking price</th>
+                        <th>Predicted value</th>
+                        <th>Undervalued by</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                    <tr>
+                        <td>#{{ result.property_id }}</td>
+                        <td>{{ "%g"|format(result.beds) }} / {{ "%g"|format(result.baths) }}</td>
+                        <td>{{ "{:,.0f}".format(result.sqft) }}</td>
+                        <td>{{ result.year_built or "–" }}</td>
+                        <td>${{ "{:,.0f}".format(result.asking_price) }}</td>
+                        <td>${{ "{:,.0f}".format(result.predicted_price) }}</td>
+                        <td class="results__discount">{{ "%.2f"|format(result.discount_pct) }}%</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="message">No undervalued listings found in {{ zip_code }}.</p>
+            {% endif %}
+        {% endif %}
+    </main>
+</body>
+</html>

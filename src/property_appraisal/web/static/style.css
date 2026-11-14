@@ -1,0 +1,106 @@
+:root {
+    --background: #ffdab9;
+    --surface: #ffffff;
+    --accent: #add8e6;
+    --positive: #006400;
+    --error: #b00020;
+    --border: #d3d3d3;
+}
+
+body {
+    margin: 0;
+    background-color: var(--background);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+main {
+    width: min(70%, 960px);
+    margin: 0 auto;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+h1 {
+    font-family: monospace;
+    margin-bottom: 0.25rem;
+}
+
+.subtitle {
+    margin-top: 0;
+}
+
+.search {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+}
+
+.search label {
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.search select {
+    font-size: 18px;
+    padding: 0.4rem;
+    text-align: center;
+    width: 10rem;
+}
+
+.search button {
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 16px;
+    background-color: var(--accent);
+    border: none;
+    border-radius: 10px;
+    padding: 0.6rem 2rem;
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+
+.search button:hover {
+    transform: scale(1.1);
+}
+
+.message--error {
+    color: var(--error);
+    font-weight: bold;
+}
+
+.results {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--surface);
+}
+
+.results th,
+.results td {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.results tbody tr {
+    transition: transform 0.15s;
+}
+
+.results tbody tr:hover {
+    transform: scale(1.05);
+}
+
+.results__discount {
+    color: var(--positive);
+    font-weight: bold;
+}
+
+@media (max-width: 640px) {
+    main {
+        width: auto;
+        padding: 1rem;
+    }
+}
