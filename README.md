@@ -1,8 +1,8 @@
 # Property Appraisal
 
-This is an undergraduate project.
+This project is a comparative study of machine learning algorithms for property valuation.
 
-It finds residential listings in Los Angeles that are priced below their market value. You choose a zip code, and an XGBoost model estimates what each listing should be worth from its property attributes and its neighbourhood's crime and income statistics. Listings with an asking price below the estimate are ranked by how undervalued they are.
+This project also identifies properties priced below their market value by using XGBoost to estimates what each listing should be worth from its property attributes and its neighbourhood's crime and income statistics. Listings with an asking price below the estimate are ranked by how undervalued they are.
 
 The data was scraped from a variety of sources and is used for educational purposes only.
 
